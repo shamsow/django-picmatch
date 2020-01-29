@@ -1,0 +1,25 @@
+{% extends "matcher/base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+<div class="jumbotron">
+      <h1 class="display-4">PicMatch</h1>
+      <p class="lead">Supply a source image and a reference and this app will histogram match the source to the reference!</p>
+      <hr class="my-4">
+      <p>I built this app mainly to play with the histogram matching feature in scikit-image.</p>
+      <p>The app itself is quite simple in nature and the matching is limited in terms of accuracy.</p>
+      <p>Resulting images are often washed out and weird looking but it's still a cool concept.</p>
+      <p>The supplied source and reference should be similar in overall color, otherwise the results look really odd.</p>
+      <p>
+          I've also found that larger quality images really put a strain on my laptop. I don't know if this due to my laptop not being up to the task or
+          if scikit-image isn't great at handling high-res images. I'm guessing it's the former.
+      </p>
+      <p>
+          Lastly, the supplied images should be "clean", and by that I mean without artifacts. If the result image has artifacts, it's not the app that did 
+          it, the source image had artifacts to begin with which were brought out by the change in color.
+      </p>
+      <a class="btn btn-dark btn-lg" href="/upload" role="button">Start matching!</a>
+    </div>
+  </div>
+{% endblock %}

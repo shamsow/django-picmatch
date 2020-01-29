@@ -1,0 +1,57 @@
+{% extends "matcher/base.html" %}
+{% load static %}
+{% block title %}Picmatch{% endblock %}
+{% block body %}
+
+{% if form %}
+<div class="container mx-auto my-5 p-4 bg-light rounded" id="upload_form">
+    <h1>Upload</h1>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+        <div class="form-group row">
+            <div class="col-sm-10">
+            {% for field in form %}
+            <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+            </p>
+            {% endfor %}
+        {% endfor %}
+        <button type="submit" class="btn btn-dark">Upload</button>
+        </div>
+        </div>
+        </fieldset>
+    </form>
+</div>
+{% endif %}
+{% if results %}
+<div class="container" id="results">
+    <h1 class="mx-auto">Results</h1>
+    <hr>
+        <div class="d-flex bd-highlight">
+            <div class="p-1 my-auto mr-n5 flex-fill bd-highlight">
+                <h4>Reference</h4>
+                <img class="rounded-lg w-75" src="{% static "matcher/images/uploads/img1.jpg" %}" alt="Reference">
+            </div>
+            <div class="p-2 flex-fill bd-highlight my-auto">
+                <span class="plus">+</span>
+            </div>
+            <div class="p-4 flex-fill bd-highlight my-auto">
+                <h4 class="pl-5">Source</h4>
+                <img class="rounded-lg w-75 pl-5" src="{% static "matcher/images/uploads/img2.jpg" %}" alt="Source">
+            </div> 
+            
+        </div>
+        <hr>
+        <div class="mx-auto w-auto">
+            <h3>Result <a class="float-right text-decoration-none" href="/download">Download</a></h3>
+            <img class="rounded-lg w-100 p-1" src="{% static "matcher/images/results/result.jpg" %}" alt="Result">
+            
+        </div>
+        
+</div>
+{% endif %}
+{% endblock %}
